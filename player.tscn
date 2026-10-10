@@ -23,7 +23,7 @@ animations = [{
 }]
 
 [node name="player" type="Area2D" unique_id=993431340]
-position = Vector2(967, 545)
+position = Vector2(967, 544)
 script = ExtResource("1_onrkg")
 metadata/_edit_group_ = true
 
