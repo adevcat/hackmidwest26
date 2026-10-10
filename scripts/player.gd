@@ -1,3 +1,4 @@
+class_name Player
 extends Area2D
 
 # tile-by-tile movement
