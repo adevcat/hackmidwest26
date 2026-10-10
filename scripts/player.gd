@@ -3,9 +3,7 @@ extends Area2D
 # tile-by-tile movement
 var tile_size = 64
 var inputs = {"move_right": Vector2.RIGHT,
-			"move_left": Vector2.LEFT,
-			"move_up": Vector2.UP,
-			"move_down": Vector2.DOWN}
+			"move_left": Vector2.LEFT}
 
 # Called when the node enters the scene tree for the first time.
 @export var speed = 400
@@ -16,9 +14,16 @@ func _ready() -> void:
 	position += Vector2.ZERO * tile_size/2
 
 func _unhandled_input(event):
-	for dir in inputs.keys():
-		if event.is_action_pressed(dir):
-			move(dir)
+	pass
 
+func _process(delta:float) -> void:
+	for dir in inputs.keys():
+		if Input.is_action_pressed(dir):
+			var bounds = get_overlapping_areas()
+			for index in bounds.size():
+				if (bounds[index].name == "left_wall" and dir == "move_left") or (bounds[index].name == "right_wall" and dir == "move_right"):
+					return
+			move(dir)
+	
 func move(dir):
 	position += inputs[dir] * tile_size
