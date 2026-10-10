@@ -24,6 +24,7 @@ pattern_0 = SubResource("TileMapPattern_sugp2")
 size = Vector2(63, 190)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nbc2d"]
+size = Vector2(60, 189)
 
 [sub_resource type="GDScript" id="GDScript_sugp2"]
 script/source = "extends Node
@@ -62,7 +63,7 @@ tile_map_data = PackedByteArray("AAABAAAAAAABAAAAAAACAAAAAAAAAAAAAAACAAEAAAABAAA
 tile_set = SubResource("TileSet_74n7r")
 
 [node name="left_wall" type="Area2D" parent="." unique_id=922035503]
-position = Vector2(125, 413)
+position = Vector2(509, 415)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="left_wall" unique_id=2122272150]
@@ -72,6 +73,7 @@ shape = SubResource("RectangleShape2D_53tpj")
 [node name="right_wall" type="Area2D" parent="." unique_id=1875464878]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="right_wall" unique_id=458210591]
+position = Vector2(1376, 481)
 shape = SubResource("RectangleShape2D_nbc2d")
 
 [node name="map_state" type="Node" parent="." unique_id=1758203351]
