@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dv7slagr4be61"]
+
+[ext_resource type="Texture2D" uid="uid://barlsftbyux8n" path="res://art/drum.png" id="1_8ghg2"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8ghg2")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]

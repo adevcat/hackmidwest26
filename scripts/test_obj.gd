@@ -24,25 +24,26 @@ func set_icon(sound: AudioManager.Sound) -> void:
 	var item_sprite = null
 	match sound:
 		AudioManager.Sound.PERC:
-			item_sprite = preload("res://art/drum.png")
-			$Sprite2D.texture = item_sprite
+			item_sprite = preload("res://sprites/drum.tres")
+			$Sprite2D.sprite_frames = item_sprite
 			pass
 		AudioManager.Sound.VOX:
-			item_sprite = preload("res://art/vox.png")
-			$Sprite2D.texture = item_sprite
+			item_sprite = preload("res://sprites/vox.tres")
+			$Sprite2D.sprite_frames = item_sprite
 			pass
 		AudioManager.Sound.INST:
-			item_sprite = preload("res://art/inst.png")
-			$Sprite2D.texture = item_sprite
+			item_sprite = preload("res://sprites/inst.tres")
+			$Sprite2D.sprite_frames = item_sprite
 			pass	
 		AudioManager.Sound.SFX:
-			item_sprite = preload("res://art/sfx.png")
-			$Sprite2D.texture = item_sprite
+			item_sprite = preload("res://sprites/sfx.tres")
+			$Sprite2D.sprite_frames = item_sprite
 			pass	
 		AudioManager.Sound.SPECIAL:
-			item_sprite = preload("res://art/waaaaahpng.png")
-			$Sprite2D.texture = item_sprite			#set sprite to wahtev
-			pass							
+			item_sprite = preload("res://sprites/cube.tres")
+			$Sprite2D.sprite_frames = item_sprite
+			$Sprite2D.play()
+			pass
 	pass
 
 func _need_move():

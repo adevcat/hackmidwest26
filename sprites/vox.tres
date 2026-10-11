@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dndu8jixqvul2"]
+
+[ext_resource type="Texture2D" uid="uid://c2qpv3t24j60a" path="res://art/vox.png" id="1_28keb"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_28keb")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
