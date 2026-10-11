@@ -1,7 +1,7 @@
 extends Node
 @export var BPM: float = 135.0
 @export var BEATS_PER_MEASURE: int = 4
-@export var MEASURES: int = 1
+@export var MEASURES: int = 2
 @export var TOTAL_BEATS: int = int(MEASURES * BEATS_PER_MEASURE)
 @export var CURRENT_BEAT = 0
 var MAX_SOUNDS_PER_STREAM: int = 5
@@ -40,7 +40,6 @@ func _process(delta: float) -> void:
 	last = beat
 	
 func _run_audiostream(index: int) -> void:
-	print(index)
 	audiostreams[index].play(0.0)
 
 
@@ -53,6 +52,7 @@ func add_sound(type: String) -> void:
 		audiostreams[CURRENT_BEAT].stream.set_sync_stream(AudioManager.Sound.PERC, AudioStreamWAV.load_from_file("res://audio/DDR Snare.wav"))
 	elif type == "clap":
 		audiostreams[CURRENT_BEAT].stream.set_sync_stream(AudioManager.Sound.SFX, AudioStreamWAV.load_from_file("res://audio/Sadkey Clap.wav"))
+	_run_audiostream(CURRENT_BEAT)
 
 func _add_test_patterns() -> void:
 	for x in range(TOTAL_BEATS):
