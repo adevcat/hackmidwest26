@@ -1,3 +1,4 @@
+class_name AudioManager
 extends Node
 @export var BPM: float = 135
 @export var BEATS_PER_MEASURE: int = 4
@@ -8,8 +9,8 @@ extends Node
 @export var old_bpm: int
 var MAX_SOUNDS_PER_STREAM: int = 5
 # enum-like structure to store audio types
-class AudioManager:
-	enum Sound { PERC, VOX, INST, SFX, SPECIAL }
+
+enum Sound { PERC, VOX, INST, SFX, SPECIAL }
 signal new_beat
 # -------------------
 var DEBUG: bool = true
