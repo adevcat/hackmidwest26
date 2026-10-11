@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b86gdjmqq5oyt"
+path="res://.godot/imported/DDR Snare.wav-0b85ae76d0a90b1e1a2423147e2825fa.sample"
+
+[deps]
+
+source_file="res://audio/DDR Snare.wav"
+dest_files=["res://.godot/imported/DDR Snare.wav-0b85ae76d0a90b1e1a2423147e2825fa.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

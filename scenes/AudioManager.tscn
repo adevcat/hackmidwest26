@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bg1rqu7150mav"]
+
+[ext_resource type="Script" uid="uid://cl7s4au36hm8w" path="res://scripts/audiomanager.gd" id="1_4tesi"]
+[ext_resource type="AudioStream" uid="uid://cs8x808pv47d1" path="res://audio/woodblock_bg.wav" id="4_3dgps"]
+[ext_resource type="AudioStream" uid="uid://b86gdjmqq5oyt" path="res://audio/DDR Snare.wav" id="4_qb6qo"]
+[ext_resource type="AudioStream" uid="uid://b3awb2nqdv1bb" path="res://audio/Sadkey Clap.wav" id="5_v5v75"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_v5v75"]
+stream_count = 1
+stream_0/volume = 0.0
+
+[node name="AudioManager" type="Node" unique_id=1624995126]
+process_mode = 3
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
+script = ExtResource("1_4tesi")
+
+[node name="Snare" type="AudioStreamPlayer" parent="." unique_id=389017075]
+stream = ExtResource("4_qb6qo")
+volume_db = -4.106
+
+[node name="Clap" type="AudioStreamPlayer" parent="." unique_id=2035425749]
+stream = ExtResource("5_v5v75")
+
+[node name="BG" type="AudioStreamPlayer" parent="." unique_id=1686266783]
+stream = ExtResource("4_3dgps")
+volume_db = -7.914
+
+[node name="SyncAudio" type="AudioStreamPlayer" parent="." unique_id=10159171]
+stream = SubResource("AudioStreamSynchronized_v5v75")
+autoplay = true
