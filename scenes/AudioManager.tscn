@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bg1rqu7150mav"]
 
 [ext_resource type="Script" uid="uid://cl7s4au36hm8w" path="res://scripts/audiomanager.gd" id="1_4tesi"]
-[ext_resource type="AudioStream" path="res://audio/go.wav" id="2_3dgps"]
 [ext_resource type="Script" uid="uid://l24oxl3rscqh" path="res://scripts/audio_player.gd" id="2_4tesi"]
 [ext_resource type="AudioStream" uid="uid://cs8x808pv47d1" path="res://audio/woodblock_bg.wav" id="4_3dgps"]
 [ext_resource type="AudioStream" uid="uid://b86gdjmqq5oyt" path="res://audio/DDR Snare.wav" id="4_qb6qo"]
@@ -11,7 +10,6 @@
 script = ExtResource("1_4tesi")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1978585407]
-stream = ExtResource("2_3dgps")
 script = ExtResource("2_4tesi")
 
 [node name="Snare" type="AudioStreamPlayer" parent="." unique_id=389017075]

@@ -28,7 +28,6 @@ func update(beat):
 		1:
 			if last_played != 1:
 				last_played = 1
-				print("ahh")
 				$Snare.play(0)
 				player.move("move_left")
 				player.move("move_left")
