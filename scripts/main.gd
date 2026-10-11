@@ -1,5 +1,5 @@
 extends Node2D
-signal item_hit
+signal item_hit(type: String)
 signal spawn_entity
 
 # Called when the node enters the scene tree for the first time.
