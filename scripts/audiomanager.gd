@@ -26,7 +26,6 @@ func _ready():
 		audiostreams[i] = new
 		add_child(new)
 	print("AudioManager initialized")
-	audiostreams[0].stream.set_sync_stream(AudioManager.Sound.PERC, AudioStreamWAV.load_from_file("res://audio/DDR Snare.wav"))
 	begin()
 
 func begin() -> void:
@@ -70,6 +69,12 @@ func _add_test_patterns() -> void:
 		if x % 16 == 0:
 			audiostreams[x].stream.set_sync_stream(AudioManager.Sound.PERC, AudioStreamWAV.load_from_file("res://audio/Sadkey Clap.wav"))
 
+func get_current_sounds(beat: int) -> Array[AudioManager.Sound]:
+	var end: Array[AudioManager.Sound] = []
+	for sound in range(AudioManager.Sound.size()):
+		if audiostreams[beat].stream.get_sync_stream(sound) != null:
+			end.append(sound)
+	return end
 
 func bg_loud(loud: float) -> void:
 	$BG.volume_db = loud

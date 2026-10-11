@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://s7qm6chsys0r"]
+
+[ext_resource type="Texture2D" uid="uid://bqwbmfjfii3i4" path="res://art/DiscoCat/mc_default.png" id="1_myr73"]
+[ext_resource type="Texture2D" uid="uid://csigj34frooyv" path="res://art/DiscoCat/mc_left.png" id="2_os01g"]
+[ext_resource type="Texture2D" uid="uid://dlh6cbnpwlpgc" path="res://art/DiscoCat/mc_right.png" id="3_os01g"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_myr73")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_os01g")
+}],
+"loop": 1,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_os01g")
+}],
+"loop": 1,
+"name": &"right",
+"speed": 5.0
+}]
