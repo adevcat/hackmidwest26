@@ -4,7 +4,7 @@ extends Area2D
 var tile_size = 64
 var inputs = {"move_right": Vector2.RIGHT,
 			"move_left": Vector2.LEFT}
-
+var audiomgr: Node
 # Called when the node enters the scene tree for the first time.
 @export var speed = 400
 var screen_size # Size of the game window.
@@ -12,11 +12,16 @@ func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	position = position.snapped(Vector2.ZERO * tile_size)
 	position += Vector2.ZERO * tile_size/2
+	audiomgr = get_node("../AudioManager")
 
 func _unhandled_input(event):
 	pass
 
 func _process(delta:float) -> void:
+	if Input.is_action_just_pressed("clap"):
+		audiomgr.add_sound("clap")
+	if Input.is_action_just_pressed("snare"):
+		audiomgr.add_sound("clap")
 	for dir in inputs.keys():
 		if Input.is_action_pressed(dir):
 			var bounds = get_overlapping_areas()
