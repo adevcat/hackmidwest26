@@ -19,11 +19,30 @@ func _move_down_spot(ro: int, co: int) -> void:
 	global_position = get_parent().get_node("Spots/Spot_{0}_{1}".format({0: ro, 1: col})).get_child(0).global_position
 	can_move = false
 	
+# PERC, VOX, INST, SFX, SPECIAL
 func set_icon(sound: AudioManager.Sound) -> void:
+	var item_sprite = null
 	match sound:
 		AudioManager.Sound.PERC:
-			#set sprite to wahtev
+			item_sprite = preload("res://art/drum.png")
+			$Sprite2D.texture = item_sprite
 			pass
+		AudioManager.Sound.VOX:
+			item_sprite = preload("res://art/vox.png")
+			$Sprite2D.texture = item_sprite
+			pass
+		AudioManager.Sound.INST:
+			item_sprite = preload("res://art/inst.png")
+			$Sprite2D.texture = item_sprite
+			pass	
+		AudioManager.Sound.SFX:
+			item_sprite = preload("res://art/sfx.png")
+			$Sprite2D.texture = item_sprite
+			pass	
+		AudioManager.Sound.SPECIAL:
+			item_sprite = preload("res://art/waaaaahpng.png")
+			$Sprite2D.texture = item_sprite			#set sprite to wahtev
+			pass							
 	pass
 
 func _need_move():

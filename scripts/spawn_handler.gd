@@ -1,6 +1,7 @@
 extends Node
 signal item_hit(sound_type: AudioManager.Sound)
 @export var beat_count = 0
+var obj_scene = preload("res://scenes/test_obj.tscn")
 
 var coords_array = [Vector2(0,0),Vector2(0,0),Vector2(0,0),Vector2(0,0),Vector2(0,0)]
 
@@ -18,7 +19,6 @@ func _on_new_count_beats() -> void:
 
 func _handle_spawn_entity() -> void:
 	print("spawning new thing")
-	var obj_scene = preload("res://scenes/test_obj.tscn")
 	var child_node = obj_scene.instantiate()
 	var sound: AudioManager.Sound = randi_range(0, AudioManager.Sound.size())
 	var col = randi_range(0, 4)
@@ -26,10 +26,10 @@ func _handle_spawn_entity() -> void:
 	child_node.row = 0
 	child_node.sound_type = sound
 	child_node.set_global_position(set_spawn_coords(col))
+	child_node.set_icon(sound)
 	add_sibling(child_node)
 	return
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var sound_type: AudioManager.Sound
 	pass
