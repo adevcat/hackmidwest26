@@ -12,9 +12,17 @@ var MAX_SOUNDS_PER_STREAM: int = 5
 
 enum Sound { PERC, VOX, INST, SFX, SPECIAL }
 signal new_beat
+signal new_sound
 # -------------------
 var DEBUG: bool = true
 var audiostreams: Array[AudioStreamPlayer] = []
+var sound_bank = { 
+	AudioManager.Sound.PERC: ["res://audio/Sadkey Clap.wav"],
+	AudioManager.Sound.VOX: ["res://audio/vox/vox1.wav","res://audio/vox/vox2.wav", "res://audio/vox/vox3.wav"],
+	AudioManager.Sound.INST: ["res://audio/inst/inst1.wav","res://audio/inst/inst2.wav", "res://audio/inst/inst3.wav", "res://audio/inst/inst4.wav","res://audio/inst/inst5.wav", "res://audio/inst/inst6.wav"],
+	AudioManager.Sound.SFX: [],
+	AudioManager.Sound.SPECIAL: []
+}
 func _ready():
 	print(get_parent().get_parent().get_parent())
 	audiostreams.resize(TOTAL_BEATS)
@@ -26,10 +34,12 @@ func _ready():
 		audiostreams[i] = new
 		add_child(new)
 	print("AudioManager initialized")
+	var manager = get_node("../SpawnManager")
+	manager.item_hit.connect(add_sound)
 	begin()
 
 func begin() -> void:
-	_add_test_patterns()
+	#_add_test_patterns()
 	$BG.play()
 
 func _process(delta: float) -> void:
@@ -55,12 +65,18 @@ func update(beat) -> void:
 		get_node("../Background").play(&"moving_sky")
 	new_beat.emit()
 
-func add_sound(type: String) -> void:
-	if type == "snare":
-		audiostreams[CURRENT_BEAT].stream.set_sync_stream(AudioManager.Sound.PERC, AudioStreamWAV.load_from_file("res://audio/DDR Snare.wav"))
-	elif type == "clap":
-		audiostreams[CURRENT_BEAT].stream.set_sync_stream(AudioManager.Sound.SFX, AudioStreamWAV.load_from_file("res://audio/Sadkey Clap.wav"))
-	_run_audiostream(CURRENT_BEAT)
+func add_sound(type: AudioManager.Sound) -> void:
+	var soundfile = _get_rand_sound(type)
+	if soundfile == "":
+		return
+	audiostreams[CURRENT_BEAT%TOTAL_BEATS].stream.set_sync_stream(type, AudioStreamWAV.load_from_file(soundfile))
+	emit_signal("new_sound")
+	#_run_audiostream(CURRENT_BEAT%TOTAL_BEATS)
+
+func _get_rand_sound(type: AudioManager.Sound) -> String:
+	if sound_bank[type].size() != 0:
+		return sound_bank[type][randi_range(0, sound_bank[type].size()-1)]
+	return ""
 
 func _add_test_patterns() -> void:
 	for x in range(TOTAL_BEATS):

@@ -20,7 +20,7 @@ func _on_new_count_beats() -> void:
 func _handle_spawn_entity() -> void:
 	print("spawning new thing")
 	var child_node = obj_scene.instantiate()
-	var sound: AudioManager.Sound = randi_range(0, AudioManager.Sound.size())
+	var sound: AudioManager.Sound = randi_range(0, AudioManager.Sound.size()-1)
 	var col = randi_range(0, 4)
 	child_node.col = col
 	child_node.row = 0
