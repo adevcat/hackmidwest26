@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dljccubkb2tnd" path="res://art/DiscoStage/4.png" id="4_lu2fx"]
 [ext_resource type="PackedScene" uid="uid://bg1rqu7150mav" path="res://scenes/AudioManager.tscn" id="5_ub0vq"]
 [ext_resource type="PackedScene" uid="uid://dixbmbl6d2llo" path="res://scenes/player.tscn" id="6_4lpjh"]
-[ext_resource type="Script" uid="uid://dnbkegwajagv6" path="res://scripts/spawn_handler.gd" id="7_lu2fx"]
+[ext_resource type="Script" uid="uid://dnbkegwajagv6" path="res://scripts/spawn_handler.gd" id="7_gpvui"]
+[ext_resource type="Script" uid="uid://brm6l7p1wepnq" path="res://scripts/sequencer.gd" id="7_lu2fx"]
+[ext_resource type="Texture2D" uid="uid://bar77t0llwxqt" path="res://art/glorpshit.png" id="8_lkw3o"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pjdb7"]
 animations = [{
@@ -30,6 +32,24 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqrcy"]
 size = Vector2(4.4999943, 4.4500074)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_53tpj"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_lkw3o")
+}],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53tpj"]
 
 [node name="DiscoStage" type="Node2D" unique_id=2096372855]
 
@@ -210,7 +230,20 @@ position = Vector2(60, 66)
 scale = Vector2(0.25, 0.25)
 
 [node name="SpawnManager" type="Node" parent="." unique_id=1206507745]
+script = ExtResource("7_gpvui")
+
+[node name="Sequencer" type="Node" parent="." unique_id=1078758511]
 script = ExtResource("7_lu2fx")
+
+[node name="seq_block" type="Area2D" parent="Sequencer" unique_id=2027483142]
+visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sequencer/seq_block" unique_id=273285522]
+sprite_frames = SubResource("SpriteFrames_53tpj")
+animation = &"new_animation"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sequencer/seq_block" unique_id=1576255578]
+shape = SubResource("RectangleShape2D_53tpj")
 
 [connection signal="new_beat" from="AudioManager" to="player" method="beat_update"]
 [connection signal="new_beat" from="AudioManager" to="SpawnManager" method="_on_new_count_beats"]
