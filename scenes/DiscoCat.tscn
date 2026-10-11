@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ex1rf2sxlwop"]
+
+[node name="DiscoCat" type="Area2D" unique_id=1844067014]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1759586565]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=171697101]

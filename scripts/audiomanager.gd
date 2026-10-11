@@ -1,16 +1,18 @@
 extends Node
-@export var BPM: float = 135.0
+@export var BPM: float = 150.70
 @export var BEATS_PER_MEASURE: int = 4
+@export var BEAT_VALUE = 1
 @export var MEASURES: int = 2
 @export var TOTAL_BEATS: int = int(MEASURES * BEATS_PER_MEASURE)
-@export var CURRENT_BEAT = 0
+@export var CURRENT_BEAT = -1
+@export var old_bpm: int
 var MAX_SOUNDS_PER_STREAM: int = 5
 # enum-like structure to store audio types
 class AudioManager:
 	enum Sound { PERC, VOX, INST, SFX, SPECIAL }
-var xas
+signal new_beat
 # -------------------
-var last = -1
+var DEBUG: bool = true
 var audiostreams: Array[AudioStreamPlayer] = []
 func _ready():
 	audiostreams.resize(TOTAL_BEATS)
@@ -33,11 +35,11 @@ func _process(delta: float) -> void:
 	#var time = self.get_playback_position() + AudioServer.get_time_since_last_mix()
 	var time = $BG.get_playback_position() + AudioServer.get_time_since_last_mix()
 	# Compensate for output latency.
-	time -= 0.1 * AudioServer.get_output_latency()
-	var beat = int(time * BPM / 60.0)
-	if beat != last:
+	time -= 0.25* AudioServer.get_output_latency()
+	var beat = int(time * (BPM / 60.0)/BEAT_VALUE)
+	if beat != CURRENT_BEAT:
 		update(beat)
-	last = beat
+	CURRENT_BEAT = beat
 	
 func _run_audiostream(index: int) -> void:
 	audiostreams[index].play(0.0)
@@ -45,7 +47,12 @@ func _run_audiostream(index: int) -> void:
 
 func update(beat) -> void:
 	CURRENT_BEAT = beat % TOTAL_BEATS
+	if DEBUG:
+		print("measure: {1} beat {0}".format({0: CURRENT_BEAT, 1: int(floor(CURRENT_BEAT / BEATS_PER_MEASURE))}))
 	_run_audiostream(CURRENT_BEAT)
+	if CURRENT_BEAT % 4 == 0:
+		get_node("../Background").play(&"moving_sky")
+	new_beat.emit()
 
 func add_sound(type: String) -> void:
 	if type == "snare":
@@ -56,7 +63,20 @@ func add_sound(type: String) -> void:
 
 func _add_test_patterns() -> void:
 	for x in range(TOTAL_BEATS):
-		if x % 2 == 0:
+		if x % 8 == 0:
 			audiostreams[x].stream.set_sync_stream(AudioManager.Sound.PERC, AudioStreamWAV.load_from_file("res://audio/DDR Snare.wav"))
-		if x % 4 == 0:
+		if x % 16 == 0:
 			audiostreams[x].stream.set_sync_stream(AudioManager.Sound.PERC, AudioStreamWAV.load_from_file("res://audio/Sadkey Clap.wav"))
+
+
+func bg_loud(loud: float) -> void:
+	$BG.volume_db = loud
+
+func bg_nc(loudness: float) -> void:
+	if loudness == 24.0:
+		old_bpm = BPM
+		BPM = BPM * 0.5
+		$BG.pitch_scale = 0.5
+	else:
+		BPM = old_bpm
+		$BG.pitch_scale = 1
