@@ -3,8 +3,8 @@ extends Area2D
 
 @export var sound_type: AudioManager.Sound
 @export var col: int
-var ro = 0
-var to_move = false
+@export var row: int
+var can_move = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,8 +13,11 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _move_down_spot(ro: int, co: int) -> void:
-	global_position = get_parent().get_node("Spots/Spot_{0}_{1}".format({0: ro, 1: co})).get_child(0).global_position
-	to_move = false
+	if row > 3:
+		queue_free()
+		return
+	global_position = get_parent().get_node("Spots/Spot_{0}_{1}".format({0: ro, 1: col})).get_child(0).global_position
+	can_move = false
 	
 func set_icon(sound: AudioManager.Sound) -> void:
 	match sound:
@@ -24,7 +27,7 @@ func set_icon(sound: AudioManager.Sound) -> void:
 	pass
 
 func _need_move():
-	to_move = true
+	can_move = true
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Player:
@@ -37,10 +40,7 @@ func _on_area_entered(area: Area2D) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if to_move:
-		if ro > 3:
-			queue_free()
-			return
-		ro += 1
-		_move_down_spot(ro, col)
+	if can_move:
+		row += 1
+		_move_down_spot(row, col)
 	pass

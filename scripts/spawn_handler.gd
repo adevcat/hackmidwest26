@@ -23,6 +23,7 @@ func _handle_spawn_entity() -> void:
 	var sound: AudioManager.Sound = randi_range(0, AudioManager.Sound.size())
 	var col = randi_range(0, 4)
 	child_node.col = col
+	child_node.row = 0
 	child_node.sound_type = sound
 	child_node.set_global_position(set_spawn_coords(col))
 	add_sibling(child_node)
