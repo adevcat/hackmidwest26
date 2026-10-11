@@ -17,8 +17,8 @@ var new_beat: bool = true
 var to_move = false
 var screen_size # Size of the game window.
 func _ready() -> void:
-	print(get_parent().get_children())
-	get_parent().item_hit.connect(_on_item_hit)
+#	print(get_parent().get_children())
+#	get_parent().item_hit.connect(_on_item_hit)
 	screen_size = get_viewport_rect().size
 	col = 2
 	row = 3

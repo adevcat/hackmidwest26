@@ -1,5 +1,5 @@
 extends Node
-@export var BPM: float = 150.70
+@export var BPM: float = 135
 @export var BEATS_PER_MEASURE: int = 4
 @export var BEAT_VALUE = 1
 @export var MEASURES: int = 2
