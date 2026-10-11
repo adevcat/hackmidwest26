@@ -1,3 +1,4 @@
+class_name Player
 extends Area2D
 
 # tile-by-tile movement
@@ -9,6 +10,8 @@ var audiomgr: Node
 @export var speed = 400
 var screen_size # Size of the game window.
 func _ready() -> void:
+	print(get_parent().get_children())
+	get_parent().item_hit.connect(_on_item_hit)
 	screen_size = get_viewport_rect().size
 	position = position.snapped(Vector2.ZERO * tile_size)
 	position += Vector2.ZERO * tile_size/2
@@ -16,6 +19,9 @@ func _ready() -> void:
 
 func _unhandled_input(event):
 	pass
+
+func _on_item_hit(type):
+	print("ITGEM HIGT")
 
 func _process(delta:float) -> void:
 	if Input.is_action_just_pressed("clap"):
