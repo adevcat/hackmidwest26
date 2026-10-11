@@ -50,7 +50,7 @@ func create_icon(sound: AudioManager.Sound, beat: int) -> void:
 		AudioManager.Sound.SPECIAL:
 			z = 5
 			pass
-	var y = 40 + z * 80
+	var y =  z * 90 -40
 	block.set_global_position(Vector2(x,y))
 	var tex = load(sound_dict[sound])
 	block.get_child(0).texture = tex

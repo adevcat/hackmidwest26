@@ -8,6 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://dixbmbl6d2llo" path="res://scenes/player.tscn" id="6_4lpjh"]
 [ext_resource type="Script" uid="uid://dnbkegwajagv6" path="res://scripts/spawn_handler.gd" id="7_gpvui"]
 [ext_resource type="Script" uid="uid://brm6l7p1wepnq" path="res://scripts/sequencer.gd" id="7_lu2fx"]
+[ext_resource type="Texture2D" uid="uid://cw8dncy3saask" path="res://art/perc_measure.png" id="9_gpvui"]
+[ext_resource type="Texture2D" uid="uid://cm4yndrh8jiom" path="res://art/vox_measure.png" id="10_8ae57"]
+[ext_resource type="Texture2D" uid="uid://x4gqmlljnn8f" path="res://art/inst_measure.png" id="11_yte6j"]
+[ext_resource type="Texture2D" uid="uid://ds7nfsfqowjgo" path="res://art/sfx_measure.png" id="12_xerev"]
+[ext_resource type="Texture2D" uid="uid://8sxv36ffljmu" path="res://art/special_measure.png" id="13_0af8r"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pjdb7"]
 animations = [{
@@ -225,6 +230,33 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sequencer/seq_block" unique_id=1576255578]
 shape = SubResource("RectangleShape2D_53tpj")
+
+[node name="SeqMarkers" type="Node" parent="." unique_id=510136397]
+
+[node name="perc_marker" type="Sprite2D" parent="SeqMarkers" unique_id=179282642]
+position = Vector2(75, 38)
+scale = Vector2(0.06277052, 0.062770545)
+texture = ExtResource("9_gpvui")
+
+[node name="vox_marker" type="Sprite2D" parent="SeqMarkers" unique_id=1194165432]
+position = Vector2(83, 125)
+scale = Vector2(0.05695347, 0.056953456)
+texture = ExtResource("10_8ae57")
+
+[node name="inst_marker" type="Sprite2D" parent="SeqMarkers" unique_id=1769560154]
+position = Vector2(84.00001, 209)
+scale = Vector2(0.049783535, 0.049783543)
+texture = ExtResource("11_yte6j")
+
+[node name="sfx_marker" type="Sprite2D" parent="SeqMarkers" unique_id=1729938824]
+position = Vector2(68, 284)
+scale = Vector2(0.040893555, 0.040893555)
+texture = ExtResource("12_xerev")
+
+[node name="special_marker" type="Sprite2D" parent="SeqMarkers" unique_id=1688836821]
+position = Vector2(57, 362)
+scale = Vector2(0.061241623, 0.06124162)
+texture = ExtResource("13_0af8r")
 
 [connection signal="new_beat" from="AudioManager" to="player" method="beat_update"]
 [connection signal="new_beat" from="AudioManager" to="SpawnManager" method="_on_new_count_beats"]
