@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b3awb2nqdv1bb"
-path="res://.godot/imported/Sadkey Clap.wav-225050324f6353d367dfd0f075a2a66e.sample"
+path="res://.godot/imported/Sadkey Clap.wav-02068dc5bd5f987ad2ca68ebbf2a1a7e.sample"
 
 [deps]
 
-source_file="res://audio/Sadkey Clap.wav"
-dest_files=["res://.godot/imported/Sadkey Clap.wav-225050324f6353d367dfd0f075a2a66e.sample"]
+source_file="res://audio/perc/Sadkey Clap.wav"
+dest_files=["res://.godot/imported/Sadkey Clap.wav-02068dc5bd5f987ad2ca68ebbf2a1a7e.sample"]
 
 [params]
 

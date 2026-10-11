@@ -17,9 +17,9 @@ signal new_sound
 var DEBUG: bool = true
 var audiostreams: Array[AudioStreamPlayer] = []
 var sound_bank = { 
-	AudioManager.Sound.PERC: ["res://audio/Sadkey Clap.wav"],
-	AudioManager.Sound.VOX: ["res://audio/vox/vox1.wav","res://audio/vox/vox2.wav", "res://audio/vox/vox3.wav"],
-	AudioManager.Sound.INST: ["res://audio/inst/inst1.wav","res://audio/inst/inst2.wav", "res://audio/inst/inst3.wav", "res://audio/inst/inst4.wav","res://audio/inst/inst5.wav", "res://audio/inst/inst6.wav"],
+	AudioManager.Sound.PERC: [],
+	AudioManager.Sound.VOX: [],
+	AudioManager.Sound.INST: [],
 	AudioManager.Sound.SFX: [],
 	AudioManager.Sound.SPECIAL: []
 }
@@ -36,7 +36,18 @@ func _ready():
 	print("AudioManager initialized")
 	var manager = get_node("../SpawnManager")
 	manager.item_hit.connect(add_sound)
+	_populate_sounds()
 	begin()
+
+func _populate_sounds():
+	var folders = {"perc": AudioManager.Sound.PERC, "vox": AudioManager.Sound.VOX, "inst": AudioManager.Sound.INST, "sfx": AudioManager.Sound.SFX, "special": AudioManager.Sound.SPECIAL}
+	var dirac = DirAccess.open("res://audio")
+	for key in folders:
+		for file in dirac.get_files_at("res://audio/"+key):
+			if file.ends_with(".wav"):
+				var path = "res://audio/" + key + "/" + file
+				sound_bank[folders[key]].append(path)
+		
 
 func begin() -> void:
 	#_add_test_patterns()
@@ -61,8 +72,15 @@ func update(beat) -> void:
 	if DEBUG:
 		print("measure: {1} beat {0}".format({0: CURRENT_BEAT, 1: int(floor(CURRENT_BEAT / BEATS_PER_MEASURE))}))
 	_run_audiostream(CURRENT_BEAT)
+	if CURRENT_BEAT % 4 == 3:
+		get_node("../player").get_child(1).animation = &"default"
+	if CURRENT_BEAT % 4 == 1:
+		get_node("../player").get_child(1).animation = &"default"
+	if CURRENT_BEAT % 4 == 2:
+		get_node("../player").get_child(1).animation = &"right"		
 	if CURRENT_BEAT % 4 == 0:
 		get_node("../Background").play(&"moving_sky")
+		get_node("../player").get_child(1).animation = &"left"
 	new_beat.emit()
 
 func add_sound(type: AudioManager.Sound) -> void:

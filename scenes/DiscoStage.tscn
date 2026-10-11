@@ -215,7 +215,6 @@ shape = SubResource("RectangleShape2D_iqrcy")
 
 [node name="player" parent="." unique_id=993431340 instance=ExtResource("6_4lpjh")]
 position = Vector2(60, 66)
-scale = Vector2(0.25, 0.25)
 
 [node name="SpawnManager" type="Node" parent="." unique_id=1206507745]
 script = ExtResource("7_gpvui")
