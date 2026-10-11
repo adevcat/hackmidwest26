@@ -82,6 +82,4 @@ script = SubResource("GDScript_sugp2")
 [node name="TestObj" parent="." unique_id=1782220201 instance=ExtResource("4_jyhfs")]
 position = Vector2(382, 262)
 
-[node name="TestObj2" parent="." unique_id=1085946923 instance=ExtResource("4_jyhfs")]
-
 [connection signal="area_entered" from="TestObj" to="TestObj" method="_on_area_entered"]

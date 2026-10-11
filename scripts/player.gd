@@ -10,12 +10,18 @@ var inputs = {"move_right": Vector2.RIGHT,
 @export var speed = 400
 var screen_size # Size of the game window.
 func _ready() -> void:
+	print(get_parent().get_children())
+	var node = get_parent().get_node("TestObj")
+	node.item_hit.connect(_on_item_hit)
 	screen_size = get_viewport_rect().size
 	position = position.snapped(Vector2.ZERO * tile_size)
 	position += Vector2.ZERO * tile_size/2
 
 func _unhandled_input(event):
 	pass
+
+func _on_item_hit(type):
+	print("ITGEM HIGT")
 
 func _process(delta:float) -> void:
 	for dir in inputs.keys():

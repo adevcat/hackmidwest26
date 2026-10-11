@@ -1,5 +1,6 @@
 class_name TestObj
 extends Area2D
+signal item_hit
 
 func _get_curr_position(node_name) -> Vector2:
 	var curr_position = get_parent().get_node(node_name).position
@@ -11,6 +12,7 @@ func _ready() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Player:
+		item_hit.emit("NONE")
 		queue_free()
 		# CALL WHATEVER FUNCTION TO APPLY EFFECT
 		print("u hitted the freakin player bro")
