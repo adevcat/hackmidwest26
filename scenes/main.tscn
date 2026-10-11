@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dixbmbl6d2llo" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bmw3xtj082v0t" path="res://art/bw_tilemap.tres" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://bg1rqu7150mav" path="res://scenes/AudioManager.tscn" id="5_tbgi4"]
-[ext_resource type="Script" uid="uid://dnbkegwajagv6" path="res://scenes/spawn_handler.gd" id="5_tefeu"]
+[ext_resource type="Script" uid="uid://dnbkegwajagv6" path="res://scripts/spawn_handler.gd" id="5_tefeu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_53tpj"]
 size = Vector2(63, 190)

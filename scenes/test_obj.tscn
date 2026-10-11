@@ -8,6 +8,8 @@ size = Vector2(144, 90)
 
 [node name="TestObj" type="Area2D" unique_id=1782220201]
 script = ExtResource("1_e0mbs")
+sound_type = null
+col = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=38714679]
 position = Vector2(75, 56)

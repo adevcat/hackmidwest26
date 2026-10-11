@@ -16,6 +16,7 @@ signal new_beat
 var DEBUG: bool = true
 var audiostreams: Array[AudioStreamPlayer] = []
 func _ready():
+	print(get_parent().get_parent().get_parent())
 	audiostreams.resize(TOTAL_BEATS)
 	for i in range(TOTAL_BEATS):
 		var new = AudioStreamPlayer.new() #$SyncAudio.duplicate()
